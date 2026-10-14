@@ -1,11 +1,12 @@
 import { readFile, writeFile, rm } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { loadEnv } from 'vite';
 import { render } from '../.prerender/entry-server.js';
 
 const site = JSON.parse(await readFile('src/content/site.json', 'utf8'));
 const env = { ...loadEnv('production', process.cwd(), ''), ...process.env };
 const deploymentUrl = env.CONTEXT && env.CONTEXT !== 'production' ? env.DEPLOY_PRIME_URL : env.URL;
-const input = env.SITE_URL || deploymentUrl;
+const input = env.SITE_URL || (env.CONTEXT && env.CONTEXT !== 'production' ? deploymentUrl : site.seo.siteUrl || deploymentUrl);
 let origin;
 if (input) {
   const url = new URL(input);
@@ -17,21 +18,32 @@ if (input) {
 const preview = Boolean(env.CONTEXT && env.CONTEXT !== 'production');
 const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const meta = (name, value, property = false) => `<meta ${property ? 'property' : 'name'}="${name}" content="${escape(value)}"/>`;
+const image = site.seo.socialImage;
+const imageBytes = await readFile(`dist${image.path}`);
+const imageVersion = createHash('sha256').update(imageBytes).digest('hex').slice(0, 12);
+const imageUrl = origin ? new URL(`${image.path}?v=${imageVersion}`, origin).href : undefined;
+const socialTitle = site.seo.socialTitle || site.seo.title;
+const socialDescription = site.seo.socialDescription || site.seo.description;
 const schema = {
   '@context': 'https://schema.org', '@type': 'ProfessionalService',
   name: site.brand.name, description: site.seo.description,
   email: site.contact.email, telephone: site.contact.phoneHref,
-  ...(origin ? { url: origin + '/' } : {}),
+  ...(origin ? { url: origin + '/', image: imageUrl } : {}),
   hasOfferCatalog: { '@type': 'OfferCatalog', name: site.services.title,
     itemListElement: site.services.items.map(item => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: item.title, description: item.description } })) },
 };
 const head = [
   `<title>${escape(site.seo.title)}</title>`, meta('description', site.seo.description),
   meta('theme-color', '#121219'), meta('robots', preview ? 'noindex, nofollow' : 'index, follow'),
-  meta('og:type', 'website', true), meta('og:title', site.seo.title, true),
-  meta('og:description', site.seo.description, true), meta('og:site_name', site.brand.name, true),
-  meta('og:locale', site.seo.locale, true), meta('twitter:card', 'summary'),
-  meta('twitter:title', site.seo.title), meta('twitter:description', site.seo.description),
+  meta('og:type', 'website', true), meta('og:title', socialTitle, true),
+  meta('og:description', socialDescription, true), meta('og:site_name', site.brand.name, true),
+  meta('og:locale', site.seo.locale, true), meta('twitter:card', 'summary_large_image'),
+  meta('twitter:title', socialTitle), meta('twitter:description', socialDescription),
+  ...(imageUrl ? [meta('og:image', imageUrl, true),
+    ...(imageUrl.startsWith('https:') ? [meta('og:image:secure_url', imageUrl, true)] : []),
+    meta('og:image:type', image.type, true), meta('og:image:width', image.width, true),
+    meta('og:image:height', image.height, true), meta('og:image:alt', image.alt, true),
+    meta('twitter:image', imageUrl), meta('twitter:image:alt', image.alt)] : []),
   ...(origin ? [`<link rel="canonical" href="${escape(origin)}/"/>`, meta('og:url', origin + '/', true)] : []),
   `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>`,
 ].join('\n');

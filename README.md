@@ -33,16 +33,24 @@ Edit `src/styles.css` for appearance. The CSS variables at the top control the p
 
 Import this project from your Git repository. `netlify.toml` sets the build command to `npm run build`, the publish directory to `dist`, and Node to 22. Alternatively upload the built `dist` folder for a manual deployment.
 
-Set `SITE_URL` in Netlify to your final public origin (for example, `https://your-domain.com`, without paths). Netlify's `URL` is a fallback. For a local build, copy `.env.example` to `.env` and set `SITE_URL`. Never put secrets in client content or Vite environment variables.
+The current public origin is configured in `seo.siteUrl` in `src/content/site.json` as `https://noxcommunications.netlify.app`. Set `SITE_URL` in Netlify to override it when moving to a custom domain (without paths). Netlify's deployment URL is the fallback when no public origin is configured; deploy previews use their preview origin unless `SITE_URL` overrides it. For a local override, copy `.env.example` to `.env` and set `SITE_URL`. Never put secrets in client content or Vite environment variables.
 
-The build produces the page title, description, Open Graph/Twitter text metadata, ProfessionalService JSON-LD, and robots.txt. Canonical links and sitemap.xml are generated when a domain is available. Netlify deploy previews use noindex and block crawling. Real deployment and custom-domain verification remain a later phase.
+The build produces the page title, description, Open Graph/Twitter image metadata, ProfessionalService JSON-LD, and robots.txt. Canonical links and sitemap.xml are generated when a domain is available. Netlify deploy previews use noindex and block crawling.
+
+## Link previews
+
+`public/social-preview.png` is a 1200 x 630 capture of the homepage, including the dark/gold branding, headline and audience diagram. Sharing metadata is embedded in the built HTML, so crawlers do not need to run JavaScript. The image URL includes a content hash to change when the artwork changes.
+
+Edit `seo.socialTitle`, `seo.socialDescription`, and `seo.socialImage.alt` in the content file to update share-card copy. To refresh the PNG after a visual change, run the production preview, then `npm run social-image` in another terminal, then rebuild. Capture requires Google Chrome; `BROWSER_CHANNEL=msedge` selects Microsoft Edge instead. `PREVIEW_URL` can override the local preview URL. Netlify builds use the committed image and do not require a browser.
+
+After deployment, the image must be publicly accessible over HTTPS. Existing shares may retain cached previews; test with a fresh share after the new deployment is live. Facebook's Sharing Debugger can inspect and refresh Facebook's cached metadata.
 
 ## Extension points
 
 - More pages: add page components and extend the prerender script to generate each route with its own metadata and sitemap entry. Avoid a blanket SPA fallback for SEO pages; preserve real 404 responses.
 - More content: move the JSON data behind a CMS adapter when needed. Components are independent of the editing UI.
 - Ads and analytics: `src/lib/analytics.js` emits `nox:contact` with email/phone method and pathname. A future consent-aware adapter can subscribe and send Meta Pixel or analytics events. These clicks indicate contact intent, not confirmed leads. No external tracking runs today.
-- Social previews: add a real PNG/JPEG cover image and its absolute Open Graph/Twitter image metadata when brand artwork is available.
+- Social previews: refresh the committed PNG with `npm run social-image` when the homepage design changes.
 - Search: submit the deployed sitemap to search tools and verify canonical URLs once the final domain is known. No implementation guarantees rankings.
 
 ## Phases

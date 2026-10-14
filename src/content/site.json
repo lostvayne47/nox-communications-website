@@ -7,6 +7,16 @@
   "seo": {
     "title": "Nox Communications | Public Relations for Founders",
     "description": "Founder-first PR agency offering earned media placements, thought leadership, ghostwriting, press releases and social media strategy.",
+    "siteUrl": "https://noxcommunications.netlify.app",
+    "socialTitle": "Nox Communications | PR for Founders",
+    "socialDescription": "Your story, in the rooms that set the agenda. Founder-first PR, earned media and thought leadership built for lasting credibility.",
+    "socialImage": {
+      "path": "/social-preview.png",
+      "alt": "Nox Communications website preview with the founder PR headline and audience infographic in dark, ivory and gold.",
+      "width": 1200,
+      "height": 630,
+      "type": "image/png"
+    },
     "locale": "en_IN"
   },
   "navigation": [
