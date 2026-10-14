@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nox Communications — Public Relations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,350;0,9..144,450;1,9..144,350&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#121219;
+    --panel:#1b1b26;
+    --panel-2:#232331;
+    --ivory:#F2EEE6;
+    --muted:#9691A3;
+    --gold:#C6A15B;
+    --gold-dim:#8a7247;
+    --line:rgba(242,238,230,0.14);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit;margin:0;padding:0;}
+  html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{height:100%;background:var(--ink);}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ivory);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+  a{color:inherit;}
+  .serif{font-family:'Fraunces',Georgia,serif;}
+  .wrap{max-width:1120px;margin:0 auto;padding-left:28px;padding-right:28px;}
+  @media (min-width:720px){.wrap{padding-left:56px;padding-right:56px;}}
+
+  /* ---- Nav ---- */
+  header{
+    position:sticky; top:0; top:env(safe-area-inset-top,0px);
+    z-index:20;
+    background:rgba(18,18,25,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0;
+  }
+  .wordmark{
+    font-family:'Fraunces',serif;
+    font-size:1.1rem;
+    letter-spacing:0.02em;
+    font-weight:350;
+  }
+  .wordmark em{font-style:italic;color:var(--gold);}
+  .navlinks{display:none; gap:34px; font-size:0.93rem; color:var(--muted);}
+  .navlinks a{transition:color .2s ease;}
+  .navlinks a:hover{color:var(--ivory);}
+  @media (min-width:680px){.navlinks{display:flex;}}
+  .nav-cta{
+    font-size:0.88rem; color:var(--ivory); border:1px solid var(--line);
+    padding:9px 18px; border-radius:2px; white-space:nowrap;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .nav-cta:hover{border-color:var(--gold); color:var(--gold);}
+
+  /* ---- Hero ---- */
+  .hero{padding:96px 0 88px; position:relative;}
+  .kicker{
+    font-size:0.94rem; color:var(--gold); margin-bottom:26px; max-width:30ch;
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:350;
+    font-size:clamp(2.2rem, 5.6vw, 4rem);
+    line-height:1.1;
+    letter-spacing:-0.005em;
+    max-width:14ch;
+  }
+  .hero h1 i{font-style:italic; color:var(--gold); font-weight:350;}
+  .hero-foot{
+    margin-top:40px;
+    display:flex; flex-wrap:wrap; gap:40px; align-items:flex-end;
+    justify-content:space-between;
+  }
+  .hero-sub{max-width:38ch; color:var(--muted); font-size:1.03rem;}
+  .hero-cta{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:0.98rem; color:var(--ink); background:var(--ivory);
+    padding:14px 26px; border-radius:2px; white-space:nowrap;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .hero-cta:hover{background:var(--gold); transform:translateY(-1px);}
+
+  /* ---- Marquee divider ---- */
+  .divider{border-top:1px solid var(--line);}
+
+  /* ---- Services ---- */
+  .services{padding:100px 0 60px;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; margin-bottom:56px; flex-wrap:wrap;
+  }
+  .section-title{
+    font-family:'Fraunces',serif; font-weight:350;
+    font-size:clamp(1.6rem,3vw,2.1rem);
+  }
+  .section-note{color:var(--muted); max-width:32ch; font-size:0.95rem; text-align:right;}
+  @media (max-width:680px){.section-note{text-align:left;}}
+
+  .service-row{
+    border-top:1px solid var(--line);
+    padding:34px 0;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    transition:padding-left .35s ease;
+  }
+  .service-row:last-child{border-bottom:1px solid var(--line);}
+  @media (min-width:760px){
+    .service-row{grid-template-columns: minmax(0,1.1fr) minmax(0,1.4fr); gap:40px; align-items:baseline;}
+  }
+  .service-row:hover{padding-left:14px;}
+  .service-name{
+    font-family:'Fraunces',serif; font-weight:350; font-size:1.3rem;
+    display:flex; align-items:baseline; gap:14px;
+  }
+  .service-name .mark{
+    color:var(--gold); font-size:1.1rem; opacity:0; transition:opacity .3s ease;
+  }
+  .service-row:hover .mark{opacity:1;}
+  .service-desc{color:var(--muted); font-size:0.98rem; max-width:52ch;}
+
+  /* ---- Philosophy ---- */
+  .philosophy{padding:90px 0; background:var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .phil-grid{display:grid; grid-template-columns:1fr; gap:36px;}
+  @media (min-width:760px){.phil-grid{grid-template-columns:0.9fr 1.4fr; gap:70px;}}
+  .phil-label{color:var(--gold); font-size:0.94rem; max-width:20ch;}
+  .phil-quote{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:350;
+    font-size:clamp(1.3rem,2.6vw,1.7rem); line-height:1.45; max-width:26ch;
+  }
+
+  /* ---- Approach strip ---- */
+  .approach{padding:90px 0;}
+  .approach-grid{display:grid; grid-template-columns:1fr; gap:44px;}
+  @media (min-width:640px){.approach-grid{grid-template-columns:1fr 1fr;}}
+  @media (min-width:960px){.approach-grid{grid-template-columns:repeat(3,1fr);}}
+  .approach-item h3{
+    font-family:'Fraunces',serif; font-weight:350; font-size:1.1rem; margin-bottom:10px;
+  }
+  .approach-item p{color:var(--muted); font-size:0.95rem; max-width:36ch;}
+
+  /* ---- Contact / footer ---- */
+  footer{background:var(--panel-2); border-top:1px solid var(--line);}
+  .contact{padding:100px 0 60px;}
+  .contact h2{
+    font-family:'Fraunces',serif; font-weight:350;
+    font-size:clamp(1.8rem,4.4vw,2.8rem); max-width:16ch; line-height:1.12;
+  }
+  .contact h2 i{font-style:italic; color:var(--gold);}
+  .contact-row{
+    margin-top:38px; display:flex; flex-wrap:wrap; gap:28px 48px; align-items:baseline;
+  }
+  .contact-email{
+    font-size:1.15rem; border-bottom:1px solid var(--gold-dim);
+    padding-bottom:2px; transition:border-color .2s ease, color .2s ease;
+  }
+  .contact-email:hover{border-color:var(--gold); color:var(--gold);}
+  .contact-meta{color:var(--muted); font-size:0.92rem;}
+  .foot-bottom{
+    margin-top:80px; padding:26px 0; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    color:var(--muted); font-size:0.85rem;
+  }
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="wordmark">nox<em>.</em>communications</div>
+      <div class="navlinks">
+        <a href="#services">Services</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="#contact">Start a project</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="kicker">Public relations for founders and the companies they build</p>
+      <h1>We put your story in the rooms that <i>set the agenda.</i></h1>
+      <div class="hero-foot">
+        <p class="hero-sub">Nox Communications is a PR agency built for founders who need coverage, credibility, and a voice — not just a press list.</p>
+        <a class="hero-cta" href="#contact">Book an intro call</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="section-title">What we do</h2>
+        <p class="section-note">Six disciplines, one point of view — your voice, sharpened for whoever needs to hear it next.</p>
+      </div>
+
+      <div class="service-row">
+        <div class="service-name"><span class="mark">—</span>Editorial Features &amp; Media Placements</div>
+        <p class="service-desc">We build relationships with the journalists and editors who cover your industry, then place your story with them — profiles, trend pieces, and features in the outlets your customers and investors actually read.</p>
+      </div>
+      <div class="service-row">
+        <div class="service-name"><span class="mark">—</span>LinkedIn &amp; Thought Leadership Strategy</div>
+        <p class="service-desc">A content strategy and posting cadence that turns your point of view into a recognisable presence — built to grow your reach and your reputation as an authority in your field, not just your follower count.</p>
+      </div>
+      <div class="service-row">
+        <div class="service-name"><span class="mark">—</span>Founder Ghostwriting</div>
+        <p class="service-desc">Essays, posts, and talking points written in your voice, drawn out of you through structured interviews — so the ideas are yours, and the writing keeps up with them.</p>
+      </div>
+      <div class="service-row">
+        <div class="service-name"><span class="mark">—</span>Press Releases</div>
+        <p class="service-desc">Announcements written to be picked up, not skimmed past — funding rounds, launches, and milestones drafted, timed, and distributed to land where they'll matter.</p>
+      </div>
+      <div class="service-row">
+        <div class="service-name"><span class="mark">—</span>Social Media Marketing</div>
+        <p class="service-desc">Organic strategy and content across the platforms your audience actually uses — building a following and a voice that carries your PR wins further than a placement alone ever could.</p>
+      </div>
+      <div class="service-row">
+        <div class="service-name"><span class="mark">—</span>Creative Founder PR</div>
+        <p class="service-desc">Campaigns and moments built around you, not a template — stunts, partnerships, and stories designed to make a founder memorable, not just mentioned.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="philosophy" id="philosophy">
+    <div class="wrap phil-grid">
+      <p class="phil-label">Our philosophy</p>
+      <p class="phil-quote">Coverage fades. A reputation, built deliberately, compounds — that's the only kind of PR worth doing.</p>
+    </div>
+  </section>
+
+  <section class="approach">
+    <div class="wrap approach-grid">
+      <div class="approach-item">
+        <h3>Founder-first</h3>
+        <p>We work directly with founders, not just comms teams — because the story is usually theirs to tell.</p>
+      </div>
+      <div class="approach-item">
+        <h3>Earned, not bought</h3>
+        <p>Every placement is earned through relationships and relevance, never paid or sponsored coverage.</p>
+      </div>
+      <div class="approach-item">
+        <h3>Built to compound</h3>
+        <p>Each piece of coverage, post, and press release is chosen to build on the last, not stand alone.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap contact">
+    <h2>Ready to be <i>heard</i> by the right people?</h2>
+    <div class="contact-row">
+      <a class="contact-email" href="mailto:noxcommuication6@gmail.com">noxcommuication6@gmail.com</a>
+      <a class="contact-email" href="tel:+918668548394">+91 86685 48394</a>
+      <span class="contact-meta">Usually replies in 24 hours</span>
+    </div>
+    <div class="foot-bottom">
+      <span>Nox Communications</span>
+      <span>Public Relations Agency</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

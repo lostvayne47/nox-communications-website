@@ -1,0 +1,129 @@
+{
+  "brand": {
+    "name": "Nox Communications",
+    "wordmark": "nox",
+    "wordmarkSuffix": "communications"
+  },
+  "seo": {
+    "title": "Nox Communications | Public Relations for Founders",
+    "description": "Founder-first PR agency offering earned media placements, thought leadership, ghostwriting, press releases and social media strategy.",
+    "locale": "en_IN"
+  },
+  "navigation": [
+    {
+      "label": "Services",
+      "href": "#services"
+    },
+    {
+      "label": "Philosophy",
+      "href": "#philosophy"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "hero": {
+    "kicker": "Public relations for founders and the companies they build",
+    "headline": "We put your story in the rooms that ",
+    "emphasis": "set the agenda.",
+    "description": "Nox Communications is a PR agency built for founders who need coverage, credibility, and a voice — not just a press list.",
+    "cta": "Book an intro call"
+  },
+  "services": {
+    "title": "What we do",
+    "note": "Six disciplines, one point of view — your voice, sharpened for whoever needs to hear it next.",
+    "items": [
+      {
+        "id": "service-1",
+        "title": "Editorial Features & Media Placements",
+        "description": "We build relationships with the journalists and editors who cover your industry, then place your story with them — profiles, trend pieces, and features in the outlets your customers and investors actually read."
+      },
+      {
+        "id": "service-2",
+        "title": "LinkedIn & Thought Leadership Strategy",
+        "description": "A content strategy and posting cadence that turns your point of view into a recognisable presence — built to grow your reach and your reputation as an authority in your field, not just your follower count."
+      },
+      {
+        "id": "service-3",
+        "title": "Founder Ghostwriting",
+        "description": "Essays, posts, and talking points written in your voice, drawn out of you through structured interviews — so the ideas are yours, and the writing keeps up with them."
+      },
+      {
+        "id": "service-4",
+        "title": "Press Releases",
+        "description": "Announcements written to be picked up, not skimmed past — funding rounds, launches, and milestones drafted, timed, and distributed to land where they'll matter."
+      },
+      {
+        "id": "service-5",
+        "title": "Social Media Marketing",
+        "description": "Organic strategy and content across the platforms your audience actually uses — building a following and a voice that carries your PR wins further than a placement alone ever could."
+      },
+      {
+        "id": "service-6",
+        "title": "Creative Founder PR",
+        "description": "Campaigns and moments built around you, not a template — stunts, partnerships, and stories designed to make a founder memorable, not just mentioned."
+      }
+    ]
+  },
+  "philosophy": {
+    "label": "Our philosophy",
+    "quote": "Coverage fades. A reputation, built deliberately, compounds — that's the only kind of PR worth doing."
+  },
+  "approach": [
+    {
+      "title": "Founder-first",
+      "description": "We work directly with founders, not just comms teams — because the story is usually theirs to tell."
+    },
+    {
+      "title": "Earned, not bought",
+      "description": "Every placement is earned through relationships and relevance, never paid or sponsored coverage."
+    },
+    {
+      "title": "Built to compound",
+      "description": "Each piece of coverage, post, and press release is chosen to build on the last, not stand alone."
+    }
+  ],
+  "visuals": {
+    "ecosystem": {
+      "label": "Connected services",
+      "title": "Your point of view at the centre",
+      "centre": "Your voice",
+      "centreNote": "The founder's point of view",
+      "caption": "Six complementary disciplines, built around the story only you can tell."
+    },
+    "reputation": {
+      "label": "Built to compound",
+      "title": "Each story builds on the last",
+      "steps": [
+        { "title": "Coverage", "description": "Earn attention through relevant media placements." },
+        { "title": "Consistency", "description": "Carry your point of view through posts, essays and announcements." },
+        { "title": "Reputation", "description": "Build a recognisable voice over time." }
+      ],
+      "caption": "A connected approach to communication, rather than isolated moments."
+    },
+    "audience": {
+      "label": "The right rooms",
+      "title": "A story with somewhere to go",
+      "source": "Your story",
+      "bridge": "Relevant outlets & platforms",
+      "groups": [
+        { "title": "Customers", "description": "The people your company serves." },
+        { "title": "Investors", "description": "The people following your next milestone." },
+        { "title": "Your industry", "description": "The conversation your expertise belongs in." }
+      ],
+      "caption": "Shape the story for the people who need to hear it next."
+    }
+  },
+  "contact": {
+    "headline": "Ready to be ",
+    "emphasis": "heard",
+    "ending": " by the right people?",
+    "email": "noxcommuication6@gmail.com",
+    "phone": "+91 86685 48394",
+    "phoneHref": "+918668548394",
+    "response": "Usually replies in 24 hours",
+    "navCta": "Start a project",
+    "category": "Public Relations Agency"
+  }
+}

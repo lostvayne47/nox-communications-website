@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+const html = await readFile('dist/index.html', 'utf8');
+const content = JSON.parse(await readFile('src/content/site.json', 'utf8'));
+assert.equal((html.match(/<h1\b/g) || []).length, 1, 'Exactly one page heading');
+for (const item of content.services.items) assert.ok(html.includes(item.description), `Prerendered service: ${item.title}`);
+for (const id of ['main', 'services', 'philosophy', 'contact']) assert.ok(html.includes(`id="${id}"`), `Navigation target ${id}`);
+assert.ok(html.includes('name="description"'));
+assert.ok(html.includes('property="og:title"'));
+assert.ok(!html.includes('<!--app-html-->') && !html.includes('<!--seo-head-->'));
+const schema = JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+assert.equal(schema.name, content.brand.name);
+assert.equal(schema.hasOfferCatalog.itemListElement.length, content.services.items.length);
+assert.ok((await readFile('dist/robots.txt', 'utf8')).includes('User-agent: *'));
+console.log('Build checks passed: prerendered content, navigation, metadata and structured data.');
