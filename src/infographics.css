@@ -47,3 +47,12 @@
 .audience-groups p{color:var(--muted);font-size:.75rem;line-height:1.6;margin-top:8px;}
 @media(max-width:959px){.ecosystem-map{grid-template-columns:minmax(0,1fr) 150px minmax(0,1fr);gap:16px 24px;}.founder-orbit{width:140px;height:140px;}.ecosystem-node{padding:14px;gap:10px;}}
 @media(max-width:639px){.hero-grid,.philosophy .phil-grid{gap:36px;}.info-card{padding:24px 20px;}.ecosystem-map{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;gap:12px;margin:28px 0;}.ecosystem-lines{display:none;}.ecosystem-centre{grid-column:1/-1;grid-row:auto;padding-bottom:18px;}.ecosystem-node{grid-column:auto;grid-row:auto;flex-direction:column;align-items:flex-start;gap:12px;padding:16px 12px;}.ecosystem-node span{font-size:.8rem;}.info-heading h3{font-size:1.3rem;}.audience-groups{gap:8px;}.audience-groups h4{font-size:.9rem;}}
+
+@media(max-width:479px){
+  .audience-groups{grid-template-columns:minmax(0,1fr);gap:24px;}
+  .audience-groups::before,.audience-groups li::before{display:none;}
+  .audience-groups h4{font-size:1.05rem;}
+  .audience-groups p{max-width:26ch;margin:8px auto 0;font-size:.85rem;}
+  .ecosystem-map{grid-template-columns:minmax(0,1fr);gap:16px;}
+  .ecosystem-node{flex-direction:row;align-items:center;padding:18px 16px;}
+}

@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import site from '../content/site.json';
 import { trackContact } from '../lib/analytics';
 import { AudienceInfographic, ServiceInfographic, ReputationInfographic } from './Infographics';
 
 export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return <header><div className="wrap"><nav aria-label="Main navigation">
     <a className="wordmark" href="#main" aria-label={site.brand.name}>{site.brand.wordmark}<em>.</em>{site.brand.wordmarkSuffix}</a>
-    <div className="navlinks">{site.navigation.map(link => <a key={link.href} href={link.href}>{link.label}</a>)}</div>
-    <a className="nav-cta" href="#contact">{site.contact.navCta}</a>
+    <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="navigation-panel" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close' : 'Menu'}<span aria-hidden="true">{menuOpen ? '−' : '+'}</span></button>
+    <div id="navigation-panel" className={`nav-panel${menuOpen ? ' is-open' : ''}`} onKeyDown={event => { if (event.key === 'Escape') { setMenuOpen(false); event.currentTarget.previousElementSibling.focus(); } }}>
+      <div className="navlinks">{site.navigation.map(link => <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>{link.label}</a>)}</div>
+      <a className="nav-cta" href="#contact" onClick={() => setMenuOpen(false)}>{site.contact.navCta}</a>
+    </div>
   </nav></div></header>;
 }
 
